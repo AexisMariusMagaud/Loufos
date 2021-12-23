@@ -17,3 +17,12 @@ html, body, .container-fluid {
   color: #575B5E;
   font-weight: normal;
 }
+
+.topbar{
+  display: inline;
+}
+
+.topbar button{
+  width: 49%;
+
+}
