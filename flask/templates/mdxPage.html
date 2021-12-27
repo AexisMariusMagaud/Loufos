@@ -1,17 +1,31 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <link href="bootstrap-3.3.0/dist/css/bootstrap.css" rel="stylesheet">
-  <script src="jquery/jquery-1.11.1.js"></script>
-  <link href="css/LiveMDXCSS.css" rel="stylesheet">
+  <link
+  href="{{ url_for('static',filename='bootstrap-3.3.0/dist/css/bootstrap.css') }}"
+  rel="stylesheet"
+  type="text/css"
+/>
+  <link
+href="{{ url_for('static',filename='css/LiveMDXCSS.css') }}"
+rel="stylesheet"
+type="text/css"
+/>
+<script src="{{ url_for('static', filename='jquery/jquery-1.11.1.js') }}"></script>
+
   <!------ Include the above in your HEAD tag ---------->
   
 </head>
 <body>
   <link href="https://fonts.googleapis.com/css?family=Oleo+Script:400,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Teko:400,700" rel="stylesheet">
-  <link href="font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  
+
+   <link
+href="{{ url_for('static',filename='font-awesome-4.7.0/css/font-awesome.min.css') }}"
+rel="stylesheet"
+type="text/css"
+/> 
+
   <section id="contact">
     <div class="section-content">
       <h1 class="section-header"> <span class="content-header wow fadeIn " data-wow-delay="0.2s" data-wow-duration="2s"><b> LOUFOS </b></span></h1>
