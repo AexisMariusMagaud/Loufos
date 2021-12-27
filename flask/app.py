@@ -9,13 +9,14 @@ from TM1py.Services import TM1Service
 from TM1py.Utils.Utils import build_pandas_dataframe_from_cellset
 
 tm1_credentials = {
-    "address" : "aexfrtma",
-    "port" : 8093,
-    "user" : "admin",
+    "address" : "aexfrform",
+    "port" : 12356,
+    "user" : "form1",
     "password" : "",
-    "namespace" : "Logos",
+    "namespace" : "Serveur_dev1",
     "ssl" : False
 }
+
 
 app = Flask(__name__)
 
@@ -47,7 +48,7 @@ def refreshMDX():
             for k in dfStatsForServer.index:
                 stringReponse += "<tr>"
                 for j in dfStatsForServer.columns:
-                    stringReponse += "<td>" + str(dfStatsForServer.loc[k][j]) + "</td>"
+                    stringReponse += "<td '>" + str(dfStatsForServer.loc[k][j]) + "</td>"
                 stringReponse += "</tr>"
             stringReponse += "</tbody></table>"
             

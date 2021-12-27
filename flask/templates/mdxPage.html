@@ -39,7 +39,7 @@ type="text/css"
               <label for ="from"> MDX </label>
             </div>
             <div class="form-group">
-              <textarea  class="form-control" id="original" placeholder="Entrez votre MDX ici"></textarea>
+              <textarea  class="form-control" id="mdx" onkeyup="checkRef()" placeholder="Entrez votre MDX ici"></textarea>
             </div>
           </div>
           
@@ -47,10 +47,64 @@ type="text/css"
             <div class="form-group"> 
               <label for ="from"> Résultat</label>
             </div>
-            <div class="form-control"> Le résult</div>
+            <div class="form-control" id="reponse"> Pas de données correspondante</div>
           </div>
         </form>
       </div></div>
     </section>
   </body>
+  <script>
+    function checkRef(){
+  
+      if (0 == 0){
+        liveMdxRefreshData()
+      }
+      else{
+        liveMdxRefreshDim()
+      }
+    }
+  
+  
+    function liveMdxRefreshData(){
+      console.log("Running liveMdxRefresh");
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          console.log(this.responseText);
+          document.getElementById("reponse").innerHTML = this.responseText;
+        }
+      };
+      xhttp.open(
+        "GET",
+        "http://127.0.0.1:5000/refreshMDXdata?&mdx=" +
+          document.getElementById("mdx").value,
+        true
+      );
+      xhttp.send();
+    }
+  
+  
+    function liveMdxRefreshDim() {
+      console.log("Running liveMdxRefresh");
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          console.log(this.responseText);
+          document.getElementById("reponse").innerHTML = this.responseText;
+        }
+      };
+      xhttp.open(
+        "GET",
+        "http://127.0.0.1:5000/refreshMDXdim?mdx=" +
+        document.getElementById("mdx").value +
+        "&dim=" +
+        document.getElementById("dimension").value,
+        true
+      );
+      xhttp.send();
+    }
+
+    checkRef()
+  </script>
   </html>
+
