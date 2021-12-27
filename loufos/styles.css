@@ -24,5 +24,11 @@ html, body, .container-fluid {
 
 .topbar button{
   width: 49%;
+  height: 100px;
+}
+
+.case{
+  width: 800px;
+  height: 2000px;
 
 }
