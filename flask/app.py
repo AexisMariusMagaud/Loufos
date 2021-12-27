@@ -63,9 +63,9 @@ def refreshMDXdim():
     dimText = request.args.get('dim')
     with TM1Service(address=tm1_credentials['address'], port=tm1_credentials['port'], ssl=tm1_credentials['ssl'], user=tm1_credentials['user'], password=tm1_credentials['password']) as tm1:
         dfStatsForServer = ""
-        dfStatsForServer = tm1.dimensions.execute_mdx("Client_facture",mdxText)
+        dfStatsForServer = tm1.dimensions.execute_mdx(dimText,mdxText)
         # Chargement du style
-        return '<br>'.join(dfStatsForServer)    
+        return '<br>'.join(dfStatsForServer)
     
 if __name__ == '__main__':
     app.run(debug=True) 
