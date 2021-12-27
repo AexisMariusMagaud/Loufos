@@ -68,6 +68,7 @@ section {
 }
 
 body {
+  overflow-x: hidden;
   height: 100%;
   background: #3a6186; /* fallback for old browsers */
   background: -webkit-linear-gradient(
