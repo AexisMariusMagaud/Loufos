@@ -20,6 +20,11 @@ tm1_credentials = {
 app = Flask(__name__)
 
 # Live MDX
+@app.route("/liveMDX")
+def liveMDX():
+    with TM1Service(address=tm1_credentials['address'], port=tm1_credentials['port'], ssl=tm1_credentials['ssl'], user=tm1_credentials['user'], password=tm1_credentials['password']) as tm1:
+        data = tm1.dimensions.get_all_names()
+    return render_template("/liveMdx.html", dims=data)
 
 @app.route("/refreshMDXdata")
 def refreshMDX():
@@ -61,5 +66,6 @@ def refreshMDXdim():
         dfStatsForServer = tm1.dimensions.execute_mdx("Client_facture",mdxText)
         # Chargement du style
         return '<br>'.join(dfStatsForServer)    
+    
 if __name__ == '__main__':
     app.run(debug=True) 
