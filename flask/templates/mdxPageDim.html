@@ -39,18 +39,18 @@ type="text/css"
               <label for ="from"> MDX </label>
             </div>
             <div class="form-group">
-              <textarea  class="form-control" id="mdx" onkeyup="checkRef()" placeholder="Entrez votre MDX ici"></textarea>
+              <textarea  class="form-control" id="mdx" placeholder="Entrez votre MDX ici"></textarea>
             </div>
           </div>
 
           <div class="col-md-12" style="align-items: center; margin-bottom:40px">
-            <button type="button" class="btn btn-default submit mx-5" style="margin-right: 1%;  width: 32%;">   Passer à ta grand mère</button>
-            <select type="button" class="btn btn-default submit mx-5" style="margin-left: 1%; margin-right: 1%; width: 32%; text-align-last: center ; text-align: left;">
+            <button type="button" class="btn btn-default submit mx-5" style="margin-left: 1%;  width: 32%;height: 5vh;" onclick="liveMdxRefreshDim()">  Traduction</button>
+            <select id="dimension" type="button" class="btn btn-default submit mx-5" style="margin-left: 1%; margin-right: 1%; width: 32%; text-align-last: center ; text-align: left;height: 5vh;">
               {% for dim in dims %}
               <option value="{{dim}}" >{{dim}}</option>
               {% endfor %} 
             </select>
-            <button type="button" class="btn btn-default submit mx-5" style="margin-left: 1%; width: 32%;">  Ouini loursson</button>
+            <a class="nav-link" href="{{ url_for('mdxPageVue') }}"><button type="button" class="btn btn-default submit mx-5" style="margin-right: 1%; width: 32%;height: 5vh;">  Passer au MDX Vue</button></a>
           </div>
           
           
@@ -65,36 +65,6 @@ type="text/css"
     </section>
   </body>
   <script>
-    function checkRef(){
-  
-      if (0 == 0){
-        liveMdxRefreshData()
-      }
-      else{
-        liveMdxRefreshDim()
-      }
-    }
-  
-  
-    function liveMdxRefreshData(){
-      console.log("Running liveMdxRefresh");
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-          console.log(this.responseText);
-          document.getElementById("reponse").innerHTML = this.responseText;
-        }
-      };
-      xhttp.open(
-        "GET",
-        "http://127.0.0.1:5000/refreshMDXdata?&mdx=" +
-          document.getElementById("mdx").value,
-        true
-      );
-      xhttp.send();
-    }
-  
-  
     function liveMdxRefreshDim() {
       console.log("Running liveMdxRefresh");
       var xhttp = new XMLHttpRequest();
@@ -114,8 +84,6 @@ type="text/css"
       );
       xhttp.send();
     }
-
-    checkRef()
   </script>
   </html>
 

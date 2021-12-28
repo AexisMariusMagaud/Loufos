@@ -9,7 +9,18 @@
 }
 
 select {
-  color: initial !important;
+  color: white;
+
+}
+
+select:hover {
+  color: black ;
+
+}
+
+
+option {
+  color: black;
 }
 
 #contact {

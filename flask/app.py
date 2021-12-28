@@ -9,11 +9,11 @@ from TM1py.Services import TM1Service
 from TM1py.Utils.Utils import build_pandas_dataframe_from_cellset
 
 tm1_credentials = {
-    "address" : "aexfrform",
-    "port" : 12356,
-    "user" : "form1",
-    "password" : "",
-    "namespace" : "Serveur_dev1",
+    "address" : "aexfrtma",
+    "port" : 8093,
+    "user" : "admin",
+    "password" : "apple",
+    "namespace" : "Logos",
     "ssl" : False
 }
 
@@ -21,11 +21,16 @@ tm1_credentials = {
 app = Flask(__name__)
 
 # Live MDX
-@app.route("/liveMDX")
-def liveMDX():
+@app.route("/mdxPageDim")
+def mdxPageDim():
     with TM1Service(address=tm1_credentials['address'], port=tm1_credentials['port'], ssl=tm1_credentials['ssl'], user=tm1_credentials['user'], password=tm1_credentials['password']) as tm1:
         data = tm1.dimensions.get_all_names()
-    return render_template("/mdxPage.html", dims=data)
+    return render_template("/mdxPageDim.html", dims=data)
+
+@app.route("/mdxPageVue")
+def mdxPageVue():
+    return render_template("/mdxPageVue.html")
+
 
 @app.route("/refreshMDXdata")
 def refreshMDX():
@@ -63,10 +68,13 @@ def refreshMDXdim():
     mdxText = request.args.get('mdx')
     dimText = request.args.get('dim')
     with TM1Service(address=tm1_credentials['address'], port=tm1_credentials['port'], ssl=tm1_credentials['ssl'], user=tm1_credentials['user'], password=tm1_credentials['password']) as tm1:
-        dfStatsForServer = ""
-        dfStatsForServer = tm1.dimensions.execute_mdx(dimText,mdxText)
-        # Chargement du style
-        return '<br>'.join(dfStatsForServer)
-    
+        try:
+            dfStatsForServer = ""
+            dfStatsForServer = tm1.dimensions.execute_mdx(dimText,mdxText)
+            # Chargement du style
+            return '<br>'.join(dfStatsForServer)
+        except:
+            return "Pas de données correspondante"
+        
 if __name__ == '__main__':
     app.run(debug=True) 
