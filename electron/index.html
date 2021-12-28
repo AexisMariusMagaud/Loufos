@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Login V4</title>
+    <title>Loufos</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!--===============================================================================================-->
@@ -135,10 +135,10 @@
               <span class="focus-input100" data-symbol="&#xf138;"></span>
             </div>
 
-            <div class="container-login100-form-btn">
-              <div class="wrap-login100-form-btn">
-                <div class="login100-form-bgbtn"></div>
-                <button class="login100-form-btn" onclick="runFlask()">Login</button>
+            <div class="container-login100-form-btn"onclick="avancer()">
+              <div class="wrap-login100-form-btn" onclick="avancer()">
+                  <div class="login100-form-bgbtn" onclick="avancer()"></div>
+                  <button class="login100-form-btn" onclick="avancer()">Login</button>
               </div>
             </div>
           </form>
@@ -165,6 +165,11 @@
     <!--===============================================================================================-->
     <script src="js/main.js"></script>
     <script>
+
+      function avancer(){
+        document.location.href = 'http://127.0.0.1:5000/mdxPageVue'
+      }
+
       function runFlask(){
         var spawn = require("child_process").spawn,child;
         child = spawn("powershell.exe",["py ../flask/app.py"]);
