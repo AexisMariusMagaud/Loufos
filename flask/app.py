@@ -65,14 +65,19 @@ def refreshMDX():
      
 @app.route("/refreshMDXdim")       
 def refreshMDXdim():
-    mdxText = request.args.get('mdx')
+    mdxText = "{" + request.args.get('mdx') + "}"
     dimText = request.args.get('dim')
     with TM1Service(address=tm1_credentials['address'], port=tm1_credentials['port'], ssl=tm1_credentials['ssl'], user=tm1_credentials['user'], password=tm1_credentials['password']) as tm1:
         try:
             dfStatsForServer = ""
             dfStatsForServer = tm1.dimensions.execute_mdx(dimText,mdxText)
             # Chargement du style
-            return '<br>'.join(dfStatsForServer)
+            stringReponse = "<table><thead><tr><th>"+str(dfStatsForServer[0])+"</th></tr></thead><tbody>"
+            for k in range(1,len(dfStatsForServer)):
+                stringReponse += "<tr><td>"+dfStatsForServer[k]+"</td></tr>"
+            stringReponse += "</tbody></table>"
+        
+            return stringReponse
         except:
             return "Pas de données correspondante"
         
