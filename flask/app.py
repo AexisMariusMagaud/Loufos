@@ -1,6 +1,7 @@
 
 # Import
 
+import sys
 from flask import Flask
 from flask import jsonify
 from flask.templating import render_template
@@ -16,6 +17,15 @@ tm1_credentials = {
     "namespace" : "Logos",
     "ssl" : False
 }
+
+#tm1_credentials = {
+#    "address" : sys.argv[1],
+#    "port" : sys.argv[2],
+#    "user" : sys.argv[3],
+#    "password" : sys.argv[4],
+#    "namespace" : sys.argv[5],
+#    "ssl" : False
+#}
 
 
 app = Flask(__name__)
