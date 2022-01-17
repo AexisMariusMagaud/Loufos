@@ -9,23 +9,23 @@ from flask import request
 from TM1py.Services import TM1Service
 from TM1py.Utils.Utils import build_pandas_dataframe_from_cellset
 
-tm1_credentials = {
-    "address" : "aexfrtma",
-    "port" : 8093,
-    "user" : "admin",
-    "password" : "apple",
-    "namespace" : "Logos",
-    "ssl" : False
-}
-
 #tm1_credentials = {
-#    "address" : sys.argv[1],
-#    "port" : sys.argv[2],
-#    "user" : sys.argv[3],
-#    "password" : sys.argv[4],
-#    "namespace" : sys.argv[5],
+#    "address" : "aexfrtma",
+#    "port" : 8093,
+#    "user" : "admin",
+#    "password" : "apple",
+#    "namespace" : "Logos",
 #    "ssl" : False
 #}
+
+tm1_credentials = {
+    "address" : sys.argv[1],
+    "port" : sys.argv[2],
+    "user" : sys.argv[3],
+    "password" : sys.argv[4],
+    "namespace" : sys.argv[5],
+    "ssl" : False
+}
 
 
 app = Flask(__name__)

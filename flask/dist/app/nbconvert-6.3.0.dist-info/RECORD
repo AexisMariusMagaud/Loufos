@@ -1,5 +1,5 @@
-../../Scripts/jupyter-dejavu.exe,sha256=Fp-cs1VLMYMWF1-rHS3FFuPPFnmwJ3M6n9PavUFNIi0,106392
-../../Scripts/jupyter-nbconvert.exe,sha256=t5ZCxVSqqIsdt8soAAt7JcoBfiTdAaEYe9d56UQgylk,106378
+../../Scripts/jupyter-dejavu.exe,sha256=fKMyfcYhm6DvqxYbYBi8-Q2AX-Q6YfWow9myZWc5oMU,106389
+../../Scripts/jupyter-nbconvert.exe,sha256=KTkQ-SVpfCoMWIs3yLUjfaubRoNERICTqTQk6-ksYDI,106375
 ../../share/jupyter/nbconvert/templates/asciidoc/conf.json,sha256=YtRONxl919kXwtomCBZ-CM4p-uOFDOCk9SnmFThA_Qg,87
 ../../share/jupyter/nbconvert/templates/asciidoc/index.asciidoc.j2,sha256=ldvuvwVyz0b7bO2ZZ8NXcnI4cdyKJBfslWnd_xZLZKc,2298
 ../../share/jupyter/nbconvert/templates/base/celltags.j2,sha256=_Gi6rqD8HQUQZgzuRRSVqDJ-J5rD0Z9lmPswq2kW6mc,213

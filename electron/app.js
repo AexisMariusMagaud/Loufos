@@ -9,15 +9,15 @@ app.once('ready', () => {
   // Create a new window
   window = new BrowserWindow({
     // Set the initial width to 800px
-    width: 800,
+    width: 1000,
     // Set the initial height to 600px
-    height: 600,
+    height: 1400,
     // Set the default background color of the window to match the CSS
     // background color of the page, this prevents any white flickering
     backgroundColor: "#D6D8DC",
     // Don't show the window until it's ready, this prevents any white flickering
     show: false,
-    autoHideMenuBar: false
+    autoHideMenuBar: true
   })
 
   // Load a URL in the window to the local index.html path

@@ -70,6 +70,7 @@
             >
               <span class="label-input100">Address</span>
               <input
+                id = "address"
                 class="input100"
                 type="text"
                 name="pass"
@@ -84,6 +85,7 @@
             >
               <span class="label-input100">Port</span>
               <input
+                id="port"
                 class="input100"
                 type="text"
                 name="pass"
@@ -98,6 +100,7 @@
             >
               <span class="label-input100">Username</span>
               <input
+                id="username"
                 class="input100"
                 type="text"
                 name="username"
@@ -112,6 +115,7 @@
             >
               <span class="label-input100">Password</span>
               <input
+                id="password"
                 class="input100"
                 type="password"
                 name="pass"
@@ -126,6 +130,7 @@
             >
               <span class="label-input100">Namespace</span>
               <input
+                id="namespace"
                 class="input100"
                 type="text"
                 name="pass"
@@ -171,7 +176,7 @@
 
       function runFlask(){
         var spawn = require("child_process").spawn,child;
-        child = spawn("powershell.exe",["py ../flask/app.py"]);
+        child = spawn("powershell.exe",["./\"../flask/dist/app/app.exe\" "+document.getElementById("address").value+" "+document.getElementById("port").value+" "+document.getElementById("username").value+" "+document.getElementById("password").value+" "+document.getElementById("namespace").value+""]);
         child.stdout.on("data",function(data){
             console.log("Powershell Data: " + data);
         });

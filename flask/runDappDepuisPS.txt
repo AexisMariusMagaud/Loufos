@@ -1,5 +1,5 @@
 var spawn = require("child_process").spawn,child;
-child = spawn("powershell.exe",["c:\\temp\\helloworld.ps1"]);
+child = spawn("powershell.exe",["pwd"]);
 child.stdout.on("data",function(data){
     console.log("Powershell Data: " + data);
 });
