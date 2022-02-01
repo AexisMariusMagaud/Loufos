@@ -16,6 +16,7 @@ type="text/css"
   <!------ Include the above in your HEAD tag ---------->
   
 </head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <body>
   <link href="https://fonts.googleapis.com/css?family=Oleo+Script:400,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Teko:400,700" rel="stylesheet">
@@ -67,6 +68,8 @@ type="text/css"
   <script>
     function liveMdxRefreshDim() {
       console.log("Running liveMdxRefresh");
+      document.getElementById("reponse").style.textAlign = "center"
+      document.getElementById("reponse").innerHTML = "<div class='fa-3x'><i class='fas fa-circle-notch fa-spin'></i></div> "
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {

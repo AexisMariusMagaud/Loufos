@@ -9,23 +9,62 @@ from flask import request
 from TM1py.Services import TM1Service
 from TM1py.Utils.Utils import build_pandas_dataframe_from_cellset
 
-#tm1_credentials = {
-#    "address" : "aexfrtma",
-#    "port" : 8093,
-#    "user" : "admin",
-#    "password" : "apple",
-#    "namespace" : "Logos",
+tm1_credentials = {
+    "address" : "aexfrtma",
+    "port" : 8093,
+    "user" : "admin",
+    "password" : "apple",
+    "namespace" : "Logos",
+    "ssl" : False
+}
+
+# tm1_credentials = {
+#    "address" : sys.argv[1],
+#    "port" : sys.argv[2],
+#    "user" : sys.argv[3],
+#    "password" : sys.argv[4],
+#    "namespace" : sys.argv[5],
 #    "ssl" : False
 #}
 
-tm1_credentials = {
-    "address" : sys.argv[1],
-    "port" : sys.argv[2],
-    "user" : sys.argv[3],
-    "password" : sys.argv[4],
-    "namespace" : sys.argv[5],
-    "ssl" : False
-}
+def returnHTML(data):
+    max = 0
+    tab_Elements = []
+
+    for thing in data:
+
+        temp = getComplexity(thing[0]['Name'],data,0)
+        if temp > max:
+            max = temp
+
+
+        tab_Elements.append([thing[0]['Name'],temp])
+        
+    string = "<table>"
+
+    for row in tab_Elements:
+        string += "<tr>"
+        
+
+        for k in range(row[1]):
+            string += "<td style='border: 1px solid black;color:white'> -------- </td>"
+        string += "<td colspan = "+str(max-row[1]+1)+" style='border: 1px solid black;'> <label style='color:white'>.</label>" + str(max-row[1]) + " | " + str(row[0]) + "</td>"
+        string += "</tr>\n"
+
+    string += "</table>"
+    return string
+    
+def getComplexity(name,data,sum):
+    for thing in data:
+        if thing[0]['Name'] == name:
+            if thing[0]['Parent'] == None:
+                return sum
+            else:
+                return getComplexity(thing[0]['Parent']['Name'],data,sum+1)
+            
+
+    
+
 
 
 app = Flask(__name__)
@@ -79,15 +118,9 @@ def refreshMDXdim():
     dimText = request.args.get('dim')
     with TM1Service(address=tm1_credentials['address'], port=tm1_credentials['port'], ssl=tm1_credentials['ssl'], user=tm1_credentials['user'], password=tm1_credentials['password']) as tm1:
         try:
-            dfStatsForServer = ""
-            dfStatsForServer = tm1.dimensions.execute_mdx(dimText,mdxText)
-            # Chargement du style
-            stringReponse = "<table><thead><tr><th>"+str(dfStatsForServer[0])+"</th></tr></thead><tbody>"
-            for k in range(1,len(dfStatsForServer)):
-                stringReponse += "<tr><td>"+dfStatsForServer[k]+"</td></tr>"
-            stringReponse += "</tbody></table>"
-        
-            return stringReponse
+            
+            dataMDX = tm1.elements.execute_set_mdx(mdxText)
+            return returnHTML(dataMDX)
         except:
             return "Pas de données correspondante"
         
