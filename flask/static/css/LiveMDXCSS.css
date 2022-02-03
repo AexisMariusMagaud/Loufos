@@ -99,7 +99,20 @@ html {
 }
 
 table, th, td {
+  margin: auto;
   width: auto;
   padding: 15px;
   border: 1px solid black;
+}
+
+.tableDim {
+  width: auto;
+  padding: 5px;
+}
+
+.tableDim th,td {
+  width: auto;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
 }

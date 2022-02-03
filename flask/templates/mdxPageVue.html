@@ -1,25 +1,16 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <link
-  href="{{ url_for('static',filename='bootstrap-3.3.0/dist/css/bootstrap.css') }}"
-  rel="stylesheet"
-  type="text/css"
-/>
-  <link
-href="{{ url_for('static',filename='css/LiveMDXCSS.css') }}"
-rel="stylesheet"
-type="text/css"
-/>
-<script src="{{ url_for('static', filename='jquery/jquery-1.11.1.js') }}"></script>
-
-  <!------ Include the above in your HEAD tag ---------->
+  <link href="{{ url_for('static',filename='bootstrap-3.3.0/dist/css/bootstrap.css') }}" rel="stylesheet" type="text/css"/>
+  <link href="{{ url_for('static',filename='css/LiveMDXCSS.css') }}" rel="stylesheet" type="text/css"/>
+  <link href="https://fonts.googleapis.com/css?family=Oleo+Script:400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Teko:400,700" rel="stylesheet">
+  <script src="{{ url_for('static', filename='jquery/jquery-1.11.1.js') }}"></script>
   
 </head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <body>
-  <link href="https://fonts.googleapis.com/css?family=Oleo+Script:400,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Teko:400,700" rel="stylesheet">
+
 
    <link
 href="{{ url_for('static',filename='font-awesome-4.7.0/css/font-awesome.min.css') }}"
@@ -53,7 +44,7 @@ type="text/css"
             <div class="form-group"> 
               <label for ="from"> Résultat</label>
             </div>
-            <div class="form-control" id="reponse"> Pas de données correspondante</div>
+            <div style='align-items: center;' class="form-control" id="reponse"> Pas de données correspondante</div>
           </div>
         </form>
       </div></div>

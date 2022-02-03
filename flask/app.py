@@ -40,16 +40,16 @@ def returnHTML(data):
 
         tab_Elements.append([thing[0]['Name'],temp,thing[0]['Weight']])
         
-    string =  "<table style='text-align:left'>"
-    string += "<thead><tr><th colspan ="+str(max+1)+"> Items </th><th> Weight </th></tr></thead>"
+    string =  "<table class='tableDim'>"
+    string += "<thead><tr><th style='text-align:center' colspan ="+str(max+1)+"> Items </th><th> Weight </th></tr></thead>"
 
     for row in tab_Elements:
-        string += "<tr>"
+        string += "<tr style='max-height:20px;'>"
         
 
         for k in range(row[1]):
-            string += "<td style='border: 1px solid black;border-bottom: none;border-top: none;color:white'> ------ </td>"
-        string += "<td colspan = "+str(max-row[1]+1)+" style='border: 1px solid black;'> <label style='color:white'>.</label>" + str(max-row[1]) + " - " + str(row[0]) + "</td><td style='text-align:center'>"+ str(row[2]) + "</td>"
+            string += "<td style='border: 1px solid black;border-bottom: none;border-top: none;color:white'><span> ------ </span></td>"
+        string += "<td colspan = "+str(max-row[1]+1)+" style='text-align:left;border: 1px solid black;'><span>" + str(max-row[1]) + " - " + str(row[0]) + "</span></td><td style='text-align:center'><span>"+ str(row[2]) + "</span></td>"
         string += "</tr>\n"
 
     string += "</table>"
@@ -117,7 +117,6 @@ def mdxPageDim():
 @app.route("/mdxPageVue")
 def mdxPageVue():
     return render_template("/mdxPageVue.html")
-
 
 @app.route("/refreshMDXdata")
 def refreshMDXAll():
