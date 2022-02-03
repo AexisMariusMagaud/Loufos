@@ -1,0 +1,34 @@
+html, body, .container-fluid {
+  background-color: #D6D8DC;
+}
+
+.text-input {
+  font-size: 16px;
+}
+
+.hash-output {
+  color: #575B5E;
+  font-size: 16px;
+  letter-spacing: 2px;
+  white-space: pre-wrap;
+}
+
+.hash-heading {
+  color: #575B5E;
+  font-weight: normal;
+}
+
+.topbar{
+  display: inline;
+}
+
+.topbar button{
+  width: 49%;
+  height: 100px;
+}
+
+.case{
+  width: 800px;
+  height: 2000px;
+
+}
