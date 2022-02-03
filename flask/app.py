@@ -38,17 +38,18 @@ def returnHTML(data):
             max = temp
 
 
-        tab_Elements.append([thing[0]['Name'],temp])
+        tab_Elements.append([thing[0]['Name'],temp,thing[0]['Weight']])
         
-    string = "<table>"
+    string =  "<table style='text-align:left'>"
+    string += "<thead><tr><th colspan ="+str(max+1)+"> Items </th><th> Weight </th></tr></thead>"
 
     for row in tab_Elements:
         string += "<tr>"
         
 
         for k in range(row[1]):
-            string += "<td style='border: 1px solid black;color:white'> -------- </td>"
-        string += "<td colspan = "+str(max-row[1]+1)+" style='border: 1px solid black;'> <label style='color:white'>.</label>" + str(max-row[1]) + " | " + str(row[0]) + "</td>"
+            string += "<td style='border: 1px solid black;border-bottom: none;border-top: none;color:white'> ------ </td>"
+        string += "<td colspan = "+str(max-row[1]+1)+" style='border: 1px solid black;'> <label style='color:white'>.</label>" + str(max-row[1]) + " - " + str(row[0]) + "</td><td style='text-align:center'>"+ str(row[2]) + "</td>"
         string += "</tr>\n"
 
     string += "</table>"
@@ -102,7 +103,7 @@ def refreshMDX():
             for k in dfStatsForServer.index:
                 stringReponse += "<tr>"
                 for j in dfStatsForServer.columns:
-                    stringReponse += "<td '>" + str(dfStatsForServer.loc[k][j]) + "</td>"
+                    stringReponse += "<td>" + str(dfStatsForServer.loc[k][j]) + "</td>"
                 stringReponse += "</tr>"
             stringReponse += "</tbody></table>"
             
