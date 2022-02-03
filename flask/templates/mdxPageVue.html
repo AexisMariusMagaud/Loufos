@@ -16,6 +16,7 @@ type="text/css"
   <!------ Include the above in your HEAD tag ---------->
   
 </head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <body>
   <link href="https://fonts.googleapis.com/css?family=Oleo+Script:400,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Teko:400,700" rel="stylesheet">
@@ -44,8 +45,7 @@ type="text/css"
           </div>
 
           <div class="col-md-12" style="align-items: center; margin-bottom:40px">
-            <button type="button" class="btn btn-default submit mx-5" style=" margin-left: 1%; width: 49%;height: 5vh;" onclick="liveMdxRefreshData()">  Traduction</button>
-            <a class="nav-link" href="{{ url_for('mdxPageDim') }}"><button type="button" class="btn btn-default submit mx-5" style="margin-right: 1%; width: 49%;height: 5vh;" >  Passer aux MDX Dim</button></a>
+            <button type="button" class="btn btn-default submit mx-5" style=" margin-left: 1%; width: 100%;height: 5vh;" onclick="liveMdxRefreshData()">  Traduction</button>
           </div>
           
           
@@ -58,12 +58,13 @@ type="text/css"
         </form>
       </div></div>
     </section>
-  </body>
+</body>
   <script>
 
 
     function liveMdxRefreshData(){
-      console.log("Running liveMdxRefresh");
+      document.getElementById("reponse").style.textAlign = "center"
+      document.getElementById("reponse").innerHTML = "<div class='fa-3x'><i class='fas fa-circle-notch fa-spin'></i></div> "
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {

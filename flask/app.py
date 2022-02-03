@@ -63,26 +63,6 @@ def getComplexity(name,data,sum):
             else:
                 return getComplexity(thing[0]['Parent']['Name'],data,sum+1)
             
-
-    
-
-
-
-app = Flask(__name__)
-
-# Live MDX
-@app.route("/mdxPageDim")
-def mdxPageDim():
-    with TM1Service(address=tm1_credentials['address'], port=tm1_credentials['port'], ssl=tm1_credentials['ssl'], user=tm1_credentials['user'], password=tm1_credentials['password']) as tm1:
-        data = tm1.dimensions.get_all_names()
-    return render_template("/mdxPageDim.html", dims=data)
-
-@app.route("/mdxPageVue")
-def mdxPageVue():
-    return render_template("/mdxPageVue.html")
-
-
-@app.route("/refreshMDXdata")
 def refreshMDX():
     mdxText = request.args.get('mdx')
     with TM1Service(address=tm1_credentials['address'], port=tm1_credentials['port'], ssl=tm1_credentials['ssl'], user=tm1_credentials['user'], password=tm1_credentials['password']) as tm1:
@@ -96,7 +76,7 @@ def refreshMDX():
             # Chargement du style
             stringReponse = "<table><thead><tr>"
             for j in dfStatsForServer.columns:
-                stringReponse += "<th>" + str(j) + "</th>"
+                stringReponse += "<th style='text-align:center'>" + str(j) + "</th>"
 
             stringReponse += '</tr></thead><tbody>'
 
@@ -113,7 +93,6 @@ def refreshMDX():
         except:
             return "Pas de données correspondante"
      
-@app.route("/refreshMDXdim")       
 def refreshMDXdim():
     mdxText = "{" + request.args.get('mdx') + "}"
     dimText = request.args.get('dim')
@@ -125,5 +104,38 @@ def refreshMDXdim():
         except:
             return "Pas de données correspondante"
         
+
+app = Flask(__name__)
+
+# Live MDX
+@app.route("/mdxPageDim")
+def mdxPageDim():
+    with TM1Service(address=tm1_credentials['address'], port=tm1_credentials['port'], ssl=tm1_credentials['ssl'], user=tm1_credentials['user'], password=tm1_credentials['password']) as tm1:
+        data = tm1.dimensions.get_all_names()
+    return render_template("/mdxPageDim.html", dims=data)
+
+@app.route("/mdxPageVue")
+def mdxPageVue():
+    return render_template("/mdxPageVue.html")
+
+
+@app.route("/refreshMDXdata")
+def refreshMDXAll():
+    returnView = refreshMDX()
+    returnDims = refreshMDXdim()
+
+    if returnView != "Pas de données correspondante":
+        return returnView
+    if returnDims != "Pas de données correspondante":
+        return returnDims
+    
+    return "Pas de données correspondante"
+    
+
+
+
+
+
+
 if __name__ == '__main__':
     app.run(debug=True) 
