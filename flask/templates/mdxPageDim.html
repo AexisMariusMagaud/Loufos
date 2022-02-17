@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link
+  href="{{ url_for('static',filename='bootstrap-3.3.0/dist/css/bootstrap.css') }}"
+  rel="stylesheet"
+  type="text/css"
+/>
+  <link
+href="{{ url_for('static',filename='css/LiveMDXCSS.css') }}"
+rel="stylesheet"
+type="text/css"
+/>
+<script src="{{ url_for('static', filename='jquery/jquery-1.11.1.js') }}"></script>
+
+  <!------ Include the above in your HEAD tag ---------->
+  
+</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<body>
+  <link href="https://fonts.googleapis.com/css?family=Oleo+Script:400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Teko:400,700" rel="stylesheet">
+
+   <link
+href="{{ url_for('static',filename='font-awesome-4.7.0/css/font-awesome.min.css') }}"
+rel="stylesheet"
+type="text/css"
+/> 
+
+  <section id="contact">
+    <div class="section-content">
+      <h1 class="section-header"> <span class="content-header wow fadeIn " data-wow-delay="0.2s" data-wow-duration="2s"><b> LOUFOS </b></span></h1>
+      <h3>Traduction à la volée de <b>MDX</b></h3>
+    </div>
+    <div class="contact-section">
+      <div class="container">
+        <form>	
+          <div class="col-md-12">
+            <div class="form-group"> 
+              <label for ="from"> MDX </label>
+            </div>
+            <div class="form-group">
+              <textarea  class="form-control" id="mdx" placeholder="Entrez votre MDX ici"></textarea>
+            </div>
+          </div>
+
+          <div class="col-md-12" style="align-items: center; margin-bottom:40px">
+            <button type="button" class="btn btn-default submit mx-5" style="margin-left: 1%;  width: 32%;height: 5vh;" onclick="liveMdxRefreshDim()">  Traduction</button>
+            <select id="dimension" type="button" class="btn btn-default submit mx-5" style="margin-left: 1%; margin-right: 1%; width: 32%; text-align-last: center ; text-align: left;height: 5vh;">
+              {% for dim in dims %}
+              <option value="{{dim}}" >{{dim}}</option>
+              {% endfor %} 
+            </select>
+            <a class="nav-link" href="{{ url_for('mdxPageVue') }}"><button type="button" class="btn btn-default submit mx-5" style="margin-right: 1%; width: 32%;height: 5vh;">  Passer au MDX Vue</button></a>
+          </div>
+          
+          
+          <div class="col-md-12">
+            <div class="form-group"> 
+              <label for ="from"> Résultat</label>
+            </div>
+            <div class="form-control" id="reponse"> Pas de données correspondante</div>
+          </div>
+        </form>
+      </div></div>
+    </section>
+  </body>
+  <script>
+    function liveMdxRefreshDim() {
+      console.log("Running liveMdxRefresh");
+      document.getElementById("reponse").style.textAlign = "center"
+      document.getElementById("reponse").innerHTML = "<div class='fa-3x'><i class='fas fa-circle-notch fa-spin'></i></div> "
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          console.log(this.responseText);
+          document.getElementById("reponse").innerHTML = this.responseText;
+        }
+      };
+      xhttp.open(
+        "GET",
+        "http://127.0.0.1:5000/refreshMDXdim?mdx=" +
+        document.getElementById("mdx").value +
+        "&dim=" +
+        document.getElementById("dimension").value,
+        true
+      );
+      xhttp.send();
+    }
+  </script>
+  </html>
+
